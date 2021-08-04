@@ -26,7 +26,7 @@ class Creator
 
     public function generateMessage(UpdateListItem $item, $is_dev = false)
     {
-        $message = sprintf('build(%s) Update %s from %s to %s', $is_dev ? 'deps-dev' : 'deps', $item->getPackageName(), $item->getOldVersion(), $item->getNewVersion());
+        $message = sprintf('build(%s): Update %s from %s to %s', $is_dev ? 'deps-dev' : 'deps', $item->getPackageName(), $item->getOldVersion(), $item->getNewVersion());
         switch ($this->type) {
             case 'none':
                 $message = sprintf('Update %s', $item->getPackageName());
@@ -36,7 +36,6 @@ class Creator
             default:
                 // The default was set initially.
                 break;
-
         }
 
         return $message;

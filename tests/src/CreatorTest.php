@@ -11,14 +11,14 @@ class CreatorTest extends TestCase
 {
     public function testUsesConventionalByDefault()
     {
-        [$item, $creator] = $this->getRequirements();
+        list($item, $creator) = $this->getRequirements();
         $msg = $creator->generateMessage($item);
         self::assertEquals('build(deps): Update psr/log from 1.0.0 to 1.1.0', $msg);
     }
 
     public function testUsesConventional()
     {
-        [$item, $creator] = $this->getRequirements();
+        list($item, $creator) = $this->getRequirements();
         $creator->setType(Type::CONVENTIONAL);
         $msg = $creator->generateMessage($item);
         self::assertEquals('build(deps): Update psr/log from 1.0.0 to 1.1.0', $msg);
@@ -28,7 +28,7 @@ class CreatorTest extends TestCase
     {
         $fakeType = 'random-type';
 
-        [$item, $creator] = $this->getRequirements();
+        list($item, $creator) = $this->getRequirements();
 
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessageRegExp('/'.$fakeType.'/');
@@ -41,7 +41,7 @@ class CreatorTest extends TestCase
 
     public function testUsesAnyFormat()
     {
-        [$item, $creator] = $this->getRequirements();
+        list($item, $creator) = $this->getRequirements();
         $creator->setType(Type::NONE);
         $msg = $creator->generateMessage($item);
         self::assertEquals('Update psr/log', $msg);
@@ -49,7 +49,7 @@ class CreatorTest extends TestCase
 
     public function testCanSetScopeAsDepsDev()
     {
-        [$item, $creator] = $this->getRequirements();
+        list($item, $creator) = $this->getRequirements();
         $msg = $creator->generateMessage($item, true);
         self::assertEquals('build(deps-dev): Update psr/log from 1.0.0 to 1.1.0', $msg);
     }

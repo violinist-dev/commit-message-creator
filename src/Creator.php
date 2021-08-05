@@ -3,10 +3,11 @@
 namespace Violinist\CommitMessageCreator;
 
 use eiriksm\ViolinistMessages\UpdateListItem;
+use Violinist\CommitMessageCreator\Constant\Type;
 
 class Creator
 {
-    private $type = 'conventional';
+    private $type = Type::CONVENTIONAL;
 
     public function setType($type)
     {
@@ -19,8 +20,8 @@ class Creator
     public static function getValidTypes()
     {
         return [
-            'none',
-            'conventional',
+            Type::NONE,
+            Type::CONVENTIONAL,
         ];
     }
 
@@ -28,11 +29,11 @@ class Creator
     {
         $message = sprintf('build(%s): Update %s from %s to %s', $is_dev ? 'deps-dev' : 'deps', $item->getPackageName(), $item->getOldVersion(), $item->getNewVersion());
         switch ($this->type) {
-            case 'none':
+            case Type::NONE:
                 $message = sprintf('Update %s', $item->getPackageName());
                 break;
 
-            case 'conventional':
+            case Type::CONVENTIONAL:
             default:
                 // The default was set initially.
                 break;

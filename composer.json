@@ -16,7 +16,7 @@
     },
     "autoload-dev": {
       "psr-4": {
-        "Violinist\\CommitMessageCreator\\Tests\\": "tests"
+        "Violinist\\CommitMessageCreator\\Tests\\": "tests/src"
       }
     },
     "minimum-stability": "dev",

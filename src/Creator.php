@@ -25,6 +25,23 @@ class Creator
         ];
     }
 
+    public function generateMessageFromString(string $message)
+    {
+        $generated_message = sprintf('build(deps) %s', $message);
+        switch ($this->type) {
+            case Type::NONE:
+                $generated_message = $message;
+                break;
+
+            case Type::CONVENTIONAL:
+            default:
+                // The default is right up there, so the default is now set for the variable generated_message.
+                break;
+        }
+
+        return $generated_message;
+    }
+
     public function generateMessage(UpdateListItem $item, $is_dev = false)
     {
         $message = sprintf('build(%s): Update %s from %s to %s', $is_dev ? 'deps-dev' : 'deps', $item->getPackageName(), $item->getOldVersion(), $item->getNewVersion());

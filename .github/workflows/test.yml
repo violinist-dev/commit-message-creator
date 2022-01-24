@@ -44,6 +44,10 @@ jobs:
       - name: Install dependencies
         run: composer --verbose install
 
+      - name: Code style
+        if: matrix.php-version != 8.1
+        run: composer lint
+
       - name: Run tests
         run: composer test
 

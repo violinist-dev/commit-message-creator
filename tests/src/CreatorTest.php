@@ -54,6 +54,29 @@ class CreatorTest extends TestCase
         self::assertEquals('build(deps-dev): Update psr/log from 1.0.0 to 1.1.0', $msg);
     }
 
+    public function testGeneralMessageConventionalDefault()
+    {
+        $creator = new Creator();
+        $msg = $creator->generateMessageFromString('Update things');
+        self::assertEquals($msg, 'build(deps): Update things');
+    }
+
+    public function testGeneralMessageConventional()
+    {
+        $creator = new Creator();
+        $creator->setType(Type::CONVENTIONAL);
+        $msg = $creator->generateMessageFromString('Update things');
+        self::assertEquals($msg, 'build(deps): Update things');
+    }
+
+    public function testGeneralMessageNoneFormat()
+    {
+        $creator = new Creator();
+        $creator->setType(Type::NONE);
+        $msg = $creator->generateMessageFromString('Update things');
+        self::assertEquals($msg, 'Update things');
+    }
+
     private function getRequirements()
     {
         $item = new UpdateListItem('psr/log', '1.1.0', '1.0.0');

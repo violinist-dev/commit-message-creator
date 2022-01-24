@@ -27,7 +27,7 @@ class Creator
 
     public function generateMessageFromString(string $message)
     {
-        $generated_message = sprintf('build(deps) %s', $message);
+        $generated_message = sprintf('build(deps): %s', $message);
         switch ($this->type) {
             case Type::NONE:
                 $generated_message = $message;

@@ -31,6 +31,6 @@
         "violinist-dev/violinist-config": "dev-master"
     },
     "require": {
-        "violinist-dev/violinist-messages": "^1.2.0"
+        "violinist-dev/violinist-messages": "^2.0"
     }
 }

@@ -77,11 +77,35 @@ class CreatorTest extends TestCase
         self::assertEquals($msg, 'Update things');
     }
 
+  /**
+   * Test the group message.
+   *
+   * @dataProvider groupProvider
+   */
+    public function testGroup($type, $expected)
+    {
+        $creator = new Creator();
+        if ($type) {
+            $creator->setType($type);
+        }
+        $msg = $creator->generateMessageForGroup('group-name');
+        self::assertEquals($msg, $expected);
+    }
+
     private function getRequirements()
     {
         $item = new UpdateListItem('psr/log', '1.1.0', '1.0.0');
         $creator = new Creator();
 
         return [$item, $creator];
+    }
+
+    public static function groupProvider()
+    {
+        return [
+            [Type::NONE, 'Update dependency group group-name'],
+            [Type::CONVENTIONAL, 'build(deps): Update dependency group group-name'],
+            [null, 'build(deps): Update dependency group group-name'],
+        ];
     }
 }

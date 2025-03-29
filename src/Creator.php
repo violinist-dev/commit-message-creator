@@ -58,4 +58,21 @@ class Creator
 
         return $message;
     }
+
+    public function generateMessageForGroup(string $group_name)
+    {
+        $message = sprintf('build(deps): Update dependency group %s', $group_name);
+        switch ($this->type) {
+            case Type::NONE:
+                $message = sprintf('Update dependency group %s', $group_name);
+                break;
+
+            case Type::CONVENTIONAL:
+            default:
+                // The default was set initially.
+                break;
+        }
+
+        return $message;
+    }
 }

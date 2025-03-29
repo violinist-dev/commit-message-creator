@@ -64,7 +64,7 @@ class Creator
         $message = sprintf('build(deps): Update dependency group %s', $group_name);
         switch ($this->type) {
             case Type::NONE:
-                $message = sprintf('Update %s', $group_name);
+                $message = sprintf('Update dependency group %s', $group_name);
                 break;
 
             case Type::CONVENTIONAL:
